@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- https://codepen.io/FRADAR/pen/GREZvOX -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- oreo -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Quicksand:400&amp;display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Balsamiq+Sans:700&amp;display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <!-- oreo  -->
+    <title>Arya</title>
+  </head>
+  <body translate="no" onclick="play()">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        margin: 0;
+      }
+      @keyframes count {
+        0% {
+          transform: translate(0, -200vh);
+          filter: blur(100px);
+        }
+        33% {
+          transform: translate(0, 0vh);
+          filter: blur(0px);
+        }
+        66% {
+          transform: translate(0, 0vh);
+          filter: blur(0px);
+        }
+        100% {
+          transform: translate(0, 200vh);
+          filter: blur(100px);
+        }
+      }
+      @keyframes countZero {
+        0% {
+          transform: translate(0, -200vh);
+          filter: blur(100px);
+        }
+        100% {
+          transform: translate(0, 0vh);
+          filter: blur(0px);
+        }
+      }
+      #count {
+        height: 100vh;
+        width: 100vw;
+        background-color: black;
+        color: white;
+        font-family: "Press Start 2P";
+        font-size: 25vh;
+        overflow: hidden;
+        position: relative;
+      }
+      body {
+        overflow: hidden;
+        position: relative;
+      }
+      .num {
+        transform: translate(0, -200vh);
+        filter: blur(100px);
+        position: absolute;
+        top: 25vh;
+        height: 50vh;
+        width: 100vw;
+        text-align: center;
+      }
+      #zero {
+        animation: countZero 1s 20s forwards;
+        color: red;
+      }
+    </style>
+    <div class="og">
+      <button onclick="play_first()">trust me</button>
+    </div>
+    <div id="count"></div>
+    <!-- oreo -->
+    <audio id="music">
+      <source src="stuff/MHMM.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <div class="text" onclick="play()" center>
+      <div>
+        A
+        <div class="fill">A</div>
+        <div class="fill">A</div>
+        <div class="fill">A</div>
+        <div class="fill">A</div>
+        <div class="fill">A</div>
+        <div class="fill">A</div>
+        <div class="fill">A</div>
+        <div class="fill">A</div>
+        <div class="fill">A</div>
+        <div>A</div>
+      </div>
+      <div>
+        r
+        <div class="fill">r</div>
+        <div class="fill">r</div>
+        <div class="fill">r</div>
+        <div class="fill">r</div>
+        <div class="fill">r</div>
+        <div class="fill">r</div>
+        <div class="fill">r</div>
+        <div class="fill">r</div>
+        <div class="fill">r</div>
+      </div>
+      <div>
+        y
+        <div class="fill">y</div>
+        <div class="fill">y</div>
+        <div class="fill">y</div>
+        <div class="fill">y</div>
+        <div class="fill">y</div>
+        <div class="fill">y</div>
+        <div class="fill">y</div>
+        <div class="fill">y</div>
+        <div class="fill">y</div>
+      </div>
+      <div>
+        a
+        <div class="fill">a</div>
+        <div class="fill">a</div>
+        <div class="fill">a</div>
+        <div class="fill">a</div>
+        <div class="fill">a</div>
+        <div class="fill">a</div>
+        <div class="fill">a</div>
+        <div class="fill">a</div>
+        <div class="fill">a</div>
+        <div class="fill">a</div>
+      </div>
+    </div>
+    <!-- oreo -->
+    <script>
+      function main(){
+        let count = document.getElementById("count");
+        for (let i = 1; i < 19; i++)
+          count.innerHTML +=
+            "<div class='num' style='animation: count 2s " +
+            (19 - i) +
+            "s forwards;'>" +
+            i +
+            "</div>";
+        count.innerHTML += "<div class='num' id='zero'>0</div>";
+        setTimeout(() => {
+          count.style.display = "none";
+        }, 20000);
+        // setTimeout(function () {
+        //   count.lastChild.style.animation = "shake 0.1s infinite";
+        // }, 7000);
+      }
+      let myMusic = document.getElementById("music");
+      let i = 0;
+      window.setInterval(() => {
+        document.getElementsByTagName("body")[0].style.background = colorText(
+          900,
+          0,
+          i++,
+          200
+        );
+      }, 30);
+
+      function play_first() {
+        var x = document.getElementsByClassName("og")[0];
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+        main()
+        play();
+        play();
+      }
+
+      function play() {
+        if (myMusic.paused) {
+          myMusic.volume = 1;
+          myMusic.play();
+          i += 200;
+        } else {
+          myMusic.pause();
+        }
+      }
+
+      function RGB2Color(r, g, b) {
+        return (
+          "rgb(" +
+          Math.round(r) +
+          "," +
+          Math.round(g) +
+          "," +
+          Math.round(b) +
+          ")"
+        );
+      }
+
+      function colorText(s, phase, i, c) {
+        if (phase == undefined) phase = 0;
+        center = c;
+        width = 55;
+        frequency = (Math.PI * 2) / s;
+        var red = Math.sin(frequency * i + 2 + phase) * width + center;
+        var green = Math.sin(frequency * i + 0 + phase) * width + center;
+        var blue = Math.sin(frequency * i + 4 + phase) * width + center;
+        return RGB2Color(red, green, blue);
+      }
+    </script>
+  </body>
+</html>
