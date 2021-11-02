@@ -154,8 +154,9 @@
       </div>
     </div>
     <!-- oreo -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script>
-      function main(){
+      function main() {
         let count = document.getElementById("count");
         for (let i = 1; i < 19; i++)
           count.innerHTML +=
@@ -167,6 +168,7 @@
         count.innerHTML += "<div class='num' id='zero'>0</div>";
         setTimeout(() => {
           count.style.display = "none";
+          confetti();
         }, 20000);
         // setTimeout(function () {
         //   count.lastChild.style.animation = "shake 0.1s infinite";
@@ -190,7 +192,7 @@
         } else {
           x.style.display = "none";
         }
-        main()
+        main();
         play();
         play();
       }
@@ -219,9 +221,9 @@
 
       function colorText(s, phase, i, c) {
         if (phase == undefined) phase = 0;
-        center = c;
-        width = 55;
-        frequency = (Math.PI * 2) / s;
+        let center = c;
+        let width = 55;
+        let frequency = (Math.PI * 2) / s;
         var red = Math.sin(frequency * i + 2 + phase) * width + center;
         var green = Math.sin(frequency * i + 0 + phase) * width + center;
         var blue = Math.sin(frequency * i + 4 + phase) * width + center;
